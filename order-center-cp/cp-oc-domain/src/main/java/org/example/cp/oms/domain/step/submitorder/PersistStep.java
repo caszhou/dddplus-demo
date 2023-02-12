@@ -1,24 +1,24 @@
 package org.example.cp.oms.domain.step.submitorder;
 
+import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.domain.ability.AssignOrderNoAbility;
 import org.example.cp.oms.domain.ability.CustomModelAbility;
-import org.example.cp.oms.spec.exception.OrderException;
 import org.example.cp.oms.domain.facade.repository.IOrderRepository;
 import org.example.cp.oms.domain.model.OrderMain;
 import org.example.cp.oms.domain.step.SubmitOrderStep;
 import org.example.cp.oms.spec.Steps;
+import org.example.cp.oms.spec.exception.OrderException;
+
 import io.github.dddplus.annotation.Step;
 import io.github.dddplus.runtime.DDD;
 
-import javax.annotation.Resource;
-import javax.validation.constraints.NotNull;
-
 @Step(value = "submitPersistStep")
 public class PersistStep extends SubmitOrderStep {
-
     @Resource
     private IOrderRepository orderRepository;
-    
+
     @Override
     public void execute(@NotNull OrderMain model) throws OrderException {
         // 分配订单号：不同场景下，订单号规则不同

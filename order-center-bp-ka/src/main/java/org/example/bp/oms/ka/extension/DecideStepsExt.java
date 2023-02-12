@@ -1,13 +1,15 @@
 package org.example.bp.oms.ka.extension;
 
+import java.util.*;
+
+import javax.validation.constraints.NotNull;
+
 import org.example.bp.oms.ka.KaPartner;
 import org.example.cp.oms.spec.Steps;
+
 import io.github.dddplus.annotation.Extension;
 import io.github.dddplus.ext.IDecideStepsExt;
 import io.github.dddplus.model.IDomainModel;
-
-import javax.validation.constraints.NotNull;
-import java.util.*;
 
 @Extension(code = KaPartner.CODE, name = "KA业务前台对所有流程的编排", value = "kaDecideStepsExt")
 public class DecideStepsExt implements IDecideStepsExt {
@@ -19,7 +21,6 @@ public class DecideStepsExt implements IDecideStepsExt {
         if (steps == null) {
             return emptySteps;
         }
-
         return steps;
     }
 

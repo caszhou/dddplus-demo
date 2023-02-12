@@ -1,18 +1,20 @@
 package org.example.cp.oms.domain.ability;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.locks.Lock;
+
+import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.domain.CoreDomain;
 import org.example.cp.oms.domain.facade.cache.IRedisClient;
 import org.example.cp.oms.domain.facade.lock.IRedisLockFactory;
 import org.example.cp.oms.spec.ext.ISerializableIsolationExt;
 import org.example.cp.oms.spec.model.IOrderMain;
 import org.example.cp.oms.spec.model.vo.LockEntry;
+
 import io.github.dddplus.annotation.DomainAbility;
 import io.github.dddplus.runtime.BaseDomainAbility;
-
-import javax.annotation.Resource;
-import javax.validation.constraints.NotNull;
-import java.util.concurrent.locks.Lock;
+import lombok.extern.slf4j.Slf4j;
 
 @DomainAbility(domain = CoreDomain.CODE, name = "订单串行化隔离的能力")
 @Slf4j
@@ -30,7 +32,6 @@ public class SerializableIsolationAbility extends BaseDomainAbility<IOrderMain, 
         if (lockEntry == null) {
             return withoutLock;
         }
-
         // 为了避免前台锁key冲突，中台统一加锁前缀，隔离不同的业务前台
         lockEntry.withPrefix(model.getCustomerNo());
         log.info("key:{} expires:{} {}", lockEntry.lockKey(), lockEntry.getLeaseTime(), lockEntry.getTimeUnit());

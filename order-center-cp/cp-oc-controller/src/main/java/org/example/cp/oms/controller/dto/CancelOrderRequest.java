@@ -1,9 +1,10 @@
 package org.example.cp.oms.controller.dto;
 
-import lombok.Data;
+import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
+
+import lombok.Data;
 
 @Data
 public class CancelOrderRequest implements Serializable {

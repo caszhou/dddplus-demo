@@ -1,22 +1,20 @@
 package org.example.cp.oms.domain.step.cancelorder;
 
-import lombok.extern.slf4j.Slf4j;
-import org.example.cp.oms.spec.exception.OrderException;
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.domain.model.OrderMain;
 import org.example.cp.oms.domain.step.CancelOrderStep;
 import org.example.cp.oms.spec.Steps;
-import io.github.dddplus.annotation.Step;
+import org.example.cp.oms.spec.exception.OrderException;
 
-import javax.validation.constraints.NotNull;
+import io.github.dddplus.annotation.Step;
+import lombok.extern.slf4j.Slf4j;
 
 @Step(value = "cancelBasicStep")
 @Slf4j
 public class BasicStep extends CancelOrderStep {
-
     @Override
-    public void execute(@NotNull OrderMain model) throws OrderException {
-
-    }
+    public void execute(@NotNull OrderMain model) throws OrderException {}
 
     @Override
     public String stepCode() {

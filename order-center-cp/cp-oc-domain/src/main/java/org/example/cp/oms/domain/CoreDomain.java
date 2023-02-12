@@ -16,7 +16,6 @@ public class CoreDomain {
     }
 
     public static final class ApplicationLifeCycle {
-
         /**
          * 应用当前状态
          */
@@ -88,5 +87,4 @@ public class CoreDomain {
             return state == State.STOPPED;
         }
     }
-
 }

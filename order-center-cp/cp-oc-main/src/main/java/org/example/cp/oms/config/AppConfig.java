@@ -5,5 +5,4 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ComponentScan(basePackages = {"io.github.dddplus", "org.example.cp", "org.example.bp", "org.example.oms"})
-public class AppConfig {
-}
+public class AppConfig {}

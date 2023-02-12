@@ -1,27 +1,25 @@
 package org.example.cp.oms;
 
-import io.github.dddplus.api.RequestProfile;
-import org.example.cp.oms.spec.exception.OrderException;
+import static org.junit.Assert.*;
+
+import javax.annotation.Resource;
+
 import org.example.cp.oms.domain.model.OrderMain;
 import org.example.cp.oms.domain.model.OrderModelCreator;
 import org.example.cp.oms.domain.service.SubmitOrder;
+import org.example.cp.oms.spec.exception.OrderException;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.annotation.Resource;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import io.github.dddplus.api.RequestProfile;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath*:spring-test.xml"})
 @Ignore
 public class ExampleTest {
-
     @Resource
     private SubmitOrder submitOrder;
 
@@ -41,7 +39,8 @@ public class ExampleTest {
         OrderMain orderModel = OrderMain.createWith(creator);
 
         // ISV业务前台的下单执行：
-        //   SerializableIsolationExt -> DecideStepsExt -> BasicStep(PresortExt) -> PersistStep(AssignOrderNoExt, CustomModelAbility) -> BroadcastStep
+        // SerializableIsolationExt -> DecideStepsExt -> BasicStep(PresortExt) -> PersistStep(AssignOrderNoExt,
+        // CustomModelAbility) -> BroadcastStep
         // 查看日志，了解具体执行情况
         submitOrder.submit(orderModel);
     }

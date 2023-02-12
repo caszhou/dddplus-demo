@@ -1,15 +1,16 @@
 package org.example.cp.oms.spec.model.vo;
 
+import java.util.concurrent.TimeUnit;
+
+import javax.validation.constraints.NotNull;
+
 import lombok.Getter;
 import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
-import java.util.concurrent.TimeUnit;
-
 @ToString
 public class LockEntry {
-
     private final String key;
+
     private String prefix;
 
     @Getter
@@ -33,8 +34,6 @@ public class LockEntry {
         if (prefix != null) {
             return prefix + ":" + key;
         }
-
         return key;
     }
-
 }

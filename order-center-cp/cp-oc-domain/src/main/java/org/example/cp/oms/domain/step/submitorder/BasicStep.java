@@ -1,9 +1,9 @@
 package org.example.cp.oms.domain.step.submitorder;
 
-import lombok.extern.slf4j.Slf4j;
-import io.github.dddplus.annotation.Step;
-import io.github.dddplus.runtime.DDD;
-import io.github.dddplus.step.ReviseStepsException;
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.domain.ability.PresortAbility;
 import org.example.cp.oms.domain.ability.ReviseStepsAbility;
 import org.example.cp.oms.domain.model.OrderMain;
@@ -11,13 +11,14 @@ import org.example.cp.oms.domain.step.SubmitOrderStep;
 import org.example.cp.oms.spec.Steps;
 import org.example.cp.oms.spec.exception.OrderException;
 
-import javax.validation.constraints.NotNull;
-import java.util.List;
+import io.github.dddplus.annotation.Step;
+import io.github.dddplus.runtime.DDD;
+import io.github.dddplus.step.ReviseStepsException;
+import lombok.extern.slf4j.Slf4j;
 
 @Step(value = "submitBasicStep")
 @Slf4j
 public class BasicStep extends SubmitOrderStep {
-
     @Override
     public void execute(@NotNull OrderMain model) throws OrderException {
         model.setStep(this.stepCode());
@@ -30,7 +31,6 @@ public class BasicStep extends SubmitOrderStep {
             // 通过异常，来改变后续步骤
             throw new ReviseStepsException().withSubsequentSteps(revisedSteps);
         }
-
         log.info("presorting...");
         DDD.findAbility(PresortAbility.class).presort(model);
     }

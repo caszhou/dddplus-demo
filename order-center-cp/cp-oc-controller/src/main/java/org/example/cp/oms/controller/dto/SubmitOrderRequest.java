@@ -1,12 +1,13 @@
 package org.example.cp.oms.controller.dto;
 
-import lombok.Data;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
+import lombok.Data;
 
 @Data
 public class SubmitOrderRequest implements Serializable {
@@ -16,6 +17,7 @@ public class SubmitOrderRequest implements Serializable {
     private String source;
 
     private String customerNo;
+
     private String externalNo;
 
     @Valid

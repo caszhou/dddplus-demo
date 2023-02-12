@@ -1,22 +1,24 @@
 package org.example.cp.oms.domain.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-import io.github.dddplus.api.RequestProfile;
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.domain.model.vo.OrderItemDelegate;
-import org.example.cp.oms.spec.exception.OrderException;
 import org.example.cp.oms.domain.model.vo.ProductDelegate;
+import org.example.cp.oms.spec.exception.OrderException;
 import org.example.cp.oms.spec.model.IOrderMain;
 import org.example.cp.oms.spec.model.vo.IOrderItemDelegate;
 import org.example.cp.oms.spec.model.vo.IProductDelegate;
 
-import javax.validation.constraints.NotNull;
+import io.github.dddplus.api.RequestProfile;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 订单主档.
- *
- * <p>注意，它没有实现Serializable，因为它不会网络传递，也不会本地文件存储.</p>
+ * <p>
+ * 注意，它没有实现Serializable，因为它不会网络传递，也不会本地文件存储.
+ * </p>
  */
 @Getter // 注意：它没有@Setter，是为了封装，包含订单一致性
 @Slf4j
@@ -24,6 +26,7 @@ public class OrderMain implements IOrderMain {
     private Long id;
 
     private String source;
+
     private String customerNo;
 
     private String orderNo;
@@ -39,6 +42,7 @@ public class OrderMain implements IOrderMain {
     private String step;
 
     private ProductDelegate productDelegate;
+
     private OrderItemDelegate orderItemDelegate;
 
     @Getter

@@ -1,7 +1,7 @@
 package org.example.cp.oms;
 
-import io.github.dddplus.runtime.registry.Container;
-import lombok.extern.slf4j.Slf4j;
+import java.io.IOException;
+
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -10,27 +10,23 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
-import java.io.IOException;
+import io.github.dddplus.runtime.registry.Container;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * 完整演示的入口：在IDE下启动：会在本机启动Jetty server.
- *
- * HTTP Controller入口在cp-oc-controller module 的 OrderController
- *
- * 下单：
- * curl -XPOST localhost:9090/order
- * 热加载：
- * curl localhost:9090/reload
- *
- * 查看日志，了解服务端的执行过程.
+ * 完整演示的入口：在IDE下启动：会在本机启动Jetty server. HTTP Controller入口在cp-oc-controller module 的 OrderController 下单： curl -XPOST
+ * localhost:9090/order 热加载： curl localhost:9090/reload 查看日志，了解服务端的执行过程.
  */
 @Slf4j
 public class OrderServer {
     private static final int DEFAULT_PORT = 9090;
+
     private static final String CONTEXT_PATH = "/";
+
     private static final String MAPPING_URL = "/*";
 
     private static final String CONFIG_LOCATION = "org.example.cp.oms.config";
+
     private static final String PLUGIN_LOCATION = "org.example.cp.oms.plugin";
 
     public static void main(String[] args) throws Exception {
@@ -42,14 +38,12 @@ public class OrderServer {
             } catch (NumberFormatException ignored) {
                 log.error("Invalid arg", ignored);
             }
-
             if (args.length > 1) {
                 // Plugin dynamic loading
                 config = PLUGIN_LOCATION;
                 log.info("Using config:{}", config);
             }
         }
-
         new OrderServer().startJetty(port, config);
     }
 
@@ -80,5 +74,4 @@ public class OrderServer {
         context.setConfigLocation(config);
         return context;
     }
-
 }

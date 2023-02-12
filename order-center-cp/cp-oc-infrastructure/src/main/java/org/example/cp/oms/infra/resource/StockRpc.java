@@ -1,8 +1,9 @@
 package org.example.cp.oms.infra.resource;
 
-import lombok.extern.slf4j.Slf4j;
 import org.example.cp.oms.spec.resource.IStockRpc;
 import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j

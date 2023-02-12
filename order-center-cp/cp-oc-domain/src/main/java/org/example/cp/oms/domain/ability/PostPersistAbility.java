@@ -1,16 +1,16 @@
 package org.example.cp.oms.domain.ability;
 
-import io.github.dddplus.annotation.DomainAbility;
-import io.github.dddplus.runtime.BaseDomainAbility;
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.domain.CoreDomain;
 import org.example.cp.oms.spec.ext.IPostPersistExt;
 import org.example.cp.oms.spec.model.IOrderMain;
 
-import javax.validation.constraints.NotNull;
+import io.github.dddplus.annotation.DomainAbility;
+import io.github.dddplus.runtime.BaseDomainAbility;
 
 @DomainAbility(domain = CoreDomain.CODE, name = "落库后的扩展能力")
 public class PostPersistAbility extends BaseDomainAbility<IOrderMain, IPostPersistExt> {
-
     public void afterPersist(@NotNull IOrderMain model) {
         firstExtension(model).afterPersist(model);
     }

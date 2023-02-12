@@ -1,14 +1,15 @@
 package org.example.cp.oms.domain.model;
 
+import java.util.List;
+
+import org.example.cp.oms.domain.model.vo.OrderItem;
+import org.example.cp.oms.domain.model.vo.Product;
+
 import io.github.dddplus.api.RequestProfile;
 import io.github.dddplus.model.IDomainModelCreator;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.example.cp.oms.domain.model.vo.OrderItem;
-import org.example.cp.oms.domain.model.vo.Product;
-
-import java.util.List;
 
 @Getter
 @Setter

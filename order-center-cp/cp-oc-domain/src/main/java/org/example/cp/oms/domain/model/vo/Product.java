@@ -1,7 +1,8 @@
 package org.example.cp.oms.domain.model.vo;
 
-import lombok.Data;
 import org.example.cp.oms.spec.model.vo.IProduct;
+
+import lombok.Data;
 
 /**
  * 订单里包含的增值服务产品.

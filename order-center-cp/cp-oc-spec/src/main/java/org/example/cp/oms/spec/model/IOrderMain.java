@@ -1,18 +1,19 @@
 package org.example.cp.oms.spec.model;
 
-import io.github.dddplus.api.RequestProfile;
 import org.example.cp.oms.spec.model.vo.IOrderItemDelegate;
 import org.example.cp.oms.spec.model.vo.IProductDelegate;
+
+import io.github.dddplus.api.RequestProfile;
 import io.github.dddplus.model.IDomainModel;
 import lombok.NonNull;
 
 /**
  * 中台为业务前台输出的订单聚合根：以接口的方式控制visibility.
- *
- * <p>订单模型可能有N个方法，但只想输出给前台N-M个方法，通过这个机制就能容易地看到收益</p>
+ * <p>
+ * 订单模型可能有N个方法，但只想输出给前台N-M个方法，通过这个机制就能容易地看到收益
+ * </p>
  */
 public interface IOrderMain extends IDomainModel {
-
     /**
      * 获取订单里包含的产品信息.
      */

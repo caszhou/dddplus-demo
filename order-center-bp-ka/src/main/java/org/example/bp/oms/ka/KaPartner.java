@@ -1,6 +1,7 @@
 package org.example.bp.oms.ka;
 
 import org.example.cp.oms.spec.model.IOrderMain;
+
 import io.github.dddplus.annotation.Partner;
 import io.github.dddplus.ext.IIdentityResolver;
 
@@ -13,7 +14,6 @@ public class KaPartner implements IIdentityResolver<IOrderMain> {
         if (model.getSource() == null) {
             return false;
         }
-
         return model.getSource().equalsIgnoreCase(CODE);
     }
 }

@@ -1,25 +1,27 @@
 package org.example.bp.oms.isv.extension;
 
-import com.google.common.collect.HashMultiset;
-import com.google.common.collect.Multiset;
-import lombok.extern.slf4j.Slf4j;
-import io.github.dddplus.annotation.Extension;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Properties;
+
+import javax.validation.constraints.NotNull;
+
 import org.example.bp.oms.isv.IsvPartner;
 import org.example.bp.oms.isv.aop.AutoLogger;
 import org.example.bp.oms.isv.extension.util.WarehouseUtil;
 import org.example.cp.oms.spec.ext.IPresortExt;
 import org.example.cp.oms.spec.model.IOrderMain;
 
-import javax.validation.constraints.NotNull;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Properties;
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Multiset;
+
+import io.github.dddplus.annotation.Extension;
+import lombok.extern.slf4j.Slf4j;
 
 @Extension(code = IsvPartner.CODE, value = "isvPresort")
 @Slf4j
 public class PresortExt implements IPresortExt {
-
     @Override
     @AutoLogger
     public void presort(@NotNull IOrderMain model) {
@@ -64,7 +66,6 @@ public class PresortExt implements IPresortExt {
                 }
             }
         }
-
         log.info("加载资源文件成功！站点名称：{}", properties.getProperty("site_name"));
     }
 }

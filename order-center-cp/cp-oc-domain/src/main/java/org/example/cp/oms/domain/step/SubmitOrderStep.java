@@ -1,14 +1,14 @@
 package org.example.cp.oms.domain.step;
 
-import org.example.cp.oms.domain.model.OrderMain;
-import io.github.dddplus.step.IRevokableDomainStep;
-import org.example.cp.oms.spec.exception.OrderException;
-import org.example.cp.oms.spec.Steps;
-
 import javax.validation.constraints.NotNull;
 
-public abstract class SubmitOrderStep implements IRevokableDomainStep<OrderMain, OrderException> {
+import org.example.cp.oms.domain.model.OrderMain;
+import org.example.cp.oms.spec.Steps;
+import org.example.cp.oms.spec.exception.OrderException;
 
+import io.github.dddplus.step.IRevokableDomainStep;
+
+public abstract class SubmitOrderStep implements IRevokableDomainStep<OrderMain, OrderException> {
     @Override
     public String activityCode() {
         return Steps.SubmitOrder.Activity;

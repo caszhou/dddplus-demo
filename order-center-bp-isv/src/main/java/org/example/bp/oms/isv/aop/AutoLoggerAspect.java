@@ -1,6 +1,5 @@
 package org.example.bp.oms.isv.aop;
 
-import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.Around;
@@ -8,12 +7,13 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
+import lombok.extern.slf4j.Slf4j;
+
 // 业务开展包里可以自己实现AOP机制
 @Aspect
 @Slf4j
 @Component
 public class AutoLoggerAspect implements InitializingBean {
-
     public AutoLoggerAspect() {
         log.info("Spring created instance AutoLoggerAspect!");
     }

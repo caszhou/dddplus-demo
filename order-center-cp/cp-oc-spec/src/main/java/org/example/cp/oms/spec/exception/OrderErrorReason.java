@@ -1,14 +1,13 @@
 package org.example.cp.oms.spec.exception;
 
 public interface OrderErrorReason {
-
     enum SubmitOrder implements OrderErrorSpec {
         OrderConcurrentNotAllowed("101", "同一个订单不允许并发"),
         InvalidExtenalNo("102", "非法的外部单号"),
-        ProductEmpty("103", "产品为空"),
-        ;
+        ProductEmpty("103", "产品为空"),;
 
         private final String code;
+
         private final String message;
 
         SubmitOrder(String code, String message) {
@@ -23,10 +22,10 @@ public interface OrderErrorReason {
     }
 
     enum CancelOrder implements OrderErrorSpec {
-        OrderConcurrentNotAllowed("201", "同一个订单不允许并发"),
-        ;
+        OrderConcurrentNotAllowed("201", "同一个订单不允许并发"),;
 
         private final String code;
+
         private final String message;
 
         CancelOrder(String code, String message) {
@@ -41,10 +40,10 @@ public interface OrderErrorReason {
     }
 
     enum Custom implements OrderErrorSpec {
-        Custom("999", "前台自定义"),
-        ;
+        Custom("999", "前台自定义"),;
 
         private final String code;
+
         private final String message;
 
         Custom(String code, String message) {

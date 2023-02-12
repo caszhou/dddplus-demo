@@ -1,6 +1,10 @@
 package org.example.cp.oms.infra.repository;
 
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.domain.facade.repository.IOrderRepository;
 import org.example.cp.oms.domain.model.OrderMain;
 import org.example.cp.oms.domain.model.OrderModelCreator;
@@ -14,14 +18,11 @@ import org.example.cp.oms.infra.translator.Model2Data;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
-import javax.validation.constraints.NotNull;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 @Repository
 @Slf4j
 public class OrderRepository implements IOrderRepository {
-
     @Resource
     private IOrderManager orderManager;
 
@@ -34,11 +35,9 @@ public class OrderRepository implements IOrderRepository {
     @Override
     public void persist(@NotNull OrderMain orderModel) {
         log.info("落库：{}", orderModel);
-
         if (true) {
             return;
         }
-
         OrderMainData orderMainData = Model2Data.instance.translate(orderModel);
         orderManager.insert(orderMainData);
     }
@@ -54,5 +53,4 @@ public class OrderRepository implements IOrderRepository {
         OrderModelCreator creator = Data2Model.instance.translate(orderMainData, orderItemDataList);
         return OrderMain.createWith(creator);
     }
-
 }

@@ -1,17 +1,18 @@
 package org.example.cp.oms.infra.lock;
 
-import lombok.extern.slf4j.Slf4j;
-import org.example.cp.oms.domain.facade.cache.IRedisClient;
-import org.example.cp.oms.spec.model.vo.LockEntry;
-
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
+import org.example.cp.oms.domain.facade.cache.IRedisClient;
+import org.example.cp.oms.spec.model.vo.LockEntry;
+
+import lombok.extern.slf4j.Slf4j;
+
 @Slf4j
 class RedisLock implements Lock {
-
     private final IRedisClient redisClient;
+
     private final LockEntry lockEntry;
 
     RedisLock(IRedisClient redisClient, LockEntry lockEntry) {
@@ -20,14 +21,10 @@ class RedisLock implements Lock {
     }
 
     @Override
-    public void lock() {
-
-    }
+    public void lock() {}
 
     @Override
-    public void lockInterruptibly() throws InterruptedException {
-
-    }
+    public void lockInterruptibly() throws InterruptedException {}
 
     @Override
     public boolean tryLock() {
@@ -41,9 +38,7 @@ class RedisLock implements Lock {
     }
 
     @Override
-    public void unlock() {
-
-    }
+    public void unlock() {}
 
     @Override
     public Condition newCondition() {

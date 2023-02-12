@@ -1,11 +1,12 @@
 package org.example.cp.oms.pattern;
 
-import io.github.dddplus.annotation.Pattern;
-import io.github.dddplus.ext.IIdentityResolver;
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.spec.Patterns;
 import org.example.cp.oms.spec.model.IOrderMain;
 
-import javax.validation.constraints.NotNull;
+import io.github.dddplus.annotation.Pattern;
+import io.github.dddplus.ext.IIdentityResolver;
 
 @Pattern(code = ColdChainB2BPattern.CODE, name = "冷链B2B模式", tags = Patterns.Tags.B2B)
 public class ColdChainB2BPattern implements IIdentityResolver<IOrderMain> {

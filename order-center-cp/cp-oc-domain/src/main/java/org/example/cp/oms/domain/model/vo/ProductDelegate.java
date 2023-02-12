@@ -1,15 +1,15 @@
 package org.example.cp.oms.domain.model.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.domain.model.OrderModelCreator;
 import org.example.cp.oms.spec.model.vo.IProduct;
 import org.example.cp.oms.spec.model.vo.IProductDelegate;
 
-import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
-
 public class ProductDelegate implements IProductDelegate {
-
     private List<Product> products;
 
     private ProductDelegate() {}

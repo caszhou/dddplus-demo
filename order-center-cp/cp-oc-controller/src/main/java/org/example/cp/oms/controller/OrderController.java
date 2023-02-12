@@ -1,17 +1,19 @@
 package org.example.cp.oms.controller;
 
-import io.github.dddplus.api.RequestProfile;
-import io.github.dddplus.runtime.registry.Container;
-import lombok.extern.slf4j.Slf4j;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
 import org.example.cp.oms.domain.model.OrderMain;
 import org.example.cp.oms.domain.model.OrderModelCreator;
 import org.example.cp.oms.domain.service.SubmitOrder;
 import org.slf4j.MDC;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
+import io.github.dddplus.api.RequestProfile;
+import io.github.dddplus.runtime.registry.Container;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
@@ -29,7 +31,6 @@ public class OrderController {
         if (type == null) {
             type = "ISV"; // ISV by default
         }
-
         log.info("type={}", type);
 
         // DTO 转换为 domain model，通过creator保护、封装domain model
@@ -50,12 +51,14 @@ public class OrderController {
         OrderMain model = OrderMain.createWith(creator);
 
         // 实际项目会使用MapStruct，进行转换
-        // OrderModelCreator orderModelCreator = SubmitOrderRequestTranslator.instance.translate(new SubmitOrderRequest());
+        // OrderModelCreator orderModelCreator = SubmitOrderRequestTranslator.instance.translate(new
+        // SubmitOrderRequest());
 
         // 调用domain service完成该use case
         submitOrder.submit(model);
         // ISV业务前台的下单执行：
-        //   SerializableIsolationExt -> DecideStepsExt -> BasicStep(PresortExt) -> PersistStep(AssignOrderNoExt, CustomModelAbility) -> BroadcastStep
+        // SerializableIsolationExt -> DecideStepsExt -> BasicStep(PresortExt) -> PersistStep(AssignOrderNoExt,
+        // CustomModelAbility) -> BroadcastStep
         // 查看日志，了解具体执行情况
         return "Order accepted!";
     }
@@ -66,19 +69,16 @@ public class OrderController {
     @ResponseBody
     public String reload(@RequestParam(required = false) String plugin) {
         MDC.put("tid", String.valueOf(System.nanoTime())); // session scope log identifier
-
         if (plugin == null) {
             plugin = "isv";
         } else {
             plugin = plugin.toLowerCase();
         }
-
         String pluginJar = plugins.get(plugin);
         if (pluginJar == null) {
             log.warn("Invalid plugin param:{}", plugin);
             return "Unknown plugin:" + plugin;
         }
-
         log.info("active plugins: {}", Container.getInstance().getActivePlugins());
 
         log.info("Reloading plugin:{} {}", plugin, pluginJar);
@@ -93,7 +93,6 @@ public class OrderController {
             log.error("fails to reload Plugin:{}", plugin, cause);
             return cause.getMessage();
         }
-
         return plugin + " Plugin Reloaded!";
     }
 

@@ -1,14 +1,15 @@
 package org.example.bp.oms.ka.extension;
 
-import lombok.extern.slf4j.Slf4j;
+import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
+
 import org.example.bp.oms.ka.KaPartner;
 import org.example.cp.oms.spec.ext.IAssignOrderNoExt;
 import org.example.cp.oms.spec.model.IOrderMain;
-import io.github.dddplus.annotation.Extension;
 import org.example.cp.oms.spec.resource.IStockRpc;
 
-import javax.annotation.Resource;
-import javax.validation.constraints.NotNull;
+import io.github.dddplus.annotation.Extension;
+import lombok.extern.slf4j.Slf4j;
 
 @Extension(code = KaPartner.CODE, value = "kaAssignOrderNoExt")
 @Slf4j
@@ -24,7 +25,6 @@ public class AssignOrderNoExt implements IAssignOrderNoExt {
         if (!stockRpc.preOccupyStock("GSM098")) {
             throw new RuntimeException("预占库存失败");
         }
-
         model.assignOrderNo(this, KA_ORDER_NO);
     }
 }

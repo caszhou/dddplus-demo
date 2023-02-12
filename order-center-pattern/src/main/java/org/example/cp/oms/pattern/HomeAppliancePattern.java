@@ -1,11 +1,12 @@
 package org.example.cp.oms.pattern;
 
-import io.github.dddplus.annotation.Pattern;
+import javax.validation.constraints.NotNull;
+
 import org.example.cp.oms.spec.Patterns;
 import org.example.cp.oms.spec.model.IOrderMain;
-import io.github.dddplus.ext.IIdentityResolver;
 
-import javax.validation.constraints.NotNull;
+import io.github.dddplus.annotation.Pattern;
+import io.github.dddplus.ext.IIdentityResolver;
 
 @Pattern(code = HomeAppliancePattern.CODE, name = "家用电器行业模式")
 public class HomeAppliancePattern implements IIdentityResolver<IOrderMain> {
@@ -16,7 +17,6 @@ public class HomeAppliancePattern implements IIdentityResolver<IOrderMain> {
         if (model.getCustomerNo() == null) {
             return false;
         }
-
         return model.getCustomerNo().equals(CODE);
     }
 }

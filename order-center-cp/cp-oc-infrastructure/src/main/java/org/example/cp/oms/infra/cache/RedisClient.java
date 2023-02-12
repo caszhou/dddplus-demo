@@ -4,5 +4,4 @@ import org.example.cp.oms.domain.facade.cache.IRedisClient;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RedisClient implements IRedisClient {
-}
+public class RedisClient implements IRedisClient {}
